@@ -41,4 +41,5 @@
 ## Installation
 > \# bash install.sh  
 > \# systemctl daemon-reload  
-> \# systemctl enable mcserv.socket --now
+> \# systemctl enable mcserv.socket --now  
+> People with SELinux may need to modify the contexts, but it is probably fine
