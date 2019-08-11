@@ -1,0 +1,8 @@
+[Unit]
+Description=Timer for Stopping Minecraft server
+
+[Timer]
+OnActiveSec=15sec
+
+[Install]
+WantedBy=multi-user.target

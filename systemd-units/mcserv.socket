@@ -1,0 +1,8 @@
+[Unit]
+Description=Socket for Starting Minecraft Server
+
+[Socket]
+ListenStream=25565
+
+[Install]
+WantedBy=sockets.target

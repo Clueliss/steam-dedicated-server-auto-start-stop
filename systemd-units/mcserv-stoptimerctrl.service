@@ -1,0 +1,9 @@
+[Unit]
+Description=Starts Timer to kill Minecraftserver when no players are online
+
+[Service]
+WorkingDirectory=/opt/mcserv
+ExecStart=/opt/mcserv/scripts/shutdown-timerctrl.sh
+
+[Install]
+WantedBy=multi-user.target

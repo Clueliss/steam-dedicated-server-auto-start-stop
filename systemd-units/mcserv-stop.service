@@ -1,0 +1,6 @@
+[Unit]
+Description=Stop Minecraft Server
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl stop mcserv.service
