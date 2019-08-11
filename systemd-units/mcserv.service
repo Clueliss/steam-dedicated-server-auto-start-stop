@@ -2,12 +2,12 @@
 Description=Minecraft Server
 After=network-online.target
 
+Wants=mcserv-stoptimerctrl.service
+OnFailure=mcserv.socket
+
 [Service]
 WorkingDirectory=/opt/mcserv
-
-ExecStartPre=/opt/mcserv/scripts/setup.sh
 ExecStart=/opt/mcserv/scripts/start.sh
-ExecStopPost=/opt/mcserv/scripts/teardown.sh
 
 [Install]
 WantedBy=mutli-user.target

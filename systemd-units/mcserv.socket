@@ -1,8 +1,9 @@
 [Unit]
-Description=Socket for Starting Minecraft Server
+Description=Socket for mcserv.service
+Conflicts=mcserv.service
 
 [Socket]
 ListenStream=25565
 
 [Install]
-WantedBy=sockets.target
+WantedBy=network-online.target
