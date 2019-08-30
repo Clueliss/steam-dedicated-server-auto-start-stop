@@ -29,11 +29,8 @@
 > - systemd
 
 ## Configuration
-> If your minecraft server does not live in /opt/mcserv you will need to edit the WorkingDirectory and Exec paths in 
-> - mcserv.service
-> - mcserv-stoptimerctrl.service
-
-> Info: I may add an automatic configuration script in the future.
+> If your minecraft server does not live in /opt/mcserv you need to run  
+> $ sh ./configure.sh MCSERVER_DIR
 
 ## Installation
 > \# bash install.sh  
