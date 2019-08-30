@@ -29,7 +29,7 @@
 > - systemd
 
 ## Configuration
-> If your minecraft server does not live in /opt/mcserv you need to run
+> If your minecraft server does not live in /opt/mcserv you need to run  
 > $ sh ./configure.sh MCSERVER_DIR
 
 ## Installation
