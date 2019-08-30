@@ -1,3 +1,4 @@
+#!/bin/bash
 
 if [[ $# < 1 ]]; then
     echo "Usage: configure PATH_TO_MCSERVER"

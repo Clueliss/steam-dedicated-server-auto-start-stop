@@ -1,3 +1,3 @@
-#!/bin/sh
+#!/bin/bash
 
 exec java -jar minecraft_server.1.14.4.jar >> server.log 2>&1
