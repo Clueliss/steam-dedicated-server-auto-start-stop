@@ -32,8 +32,6 @@
 > If your minecraft server does not live in /opt/mcserv you need to run
 > $ sh ./configure.sh MCSERVER_DIR
 
-> Info: I may add an automatic configuration script in the future.
-
 ## Installation
 > \# bash install.sh  
 > \# systemctl daemon-reload  
