@@ -10,4 +10,4 @@ RUN dnf install java-openjdk-headless -y
 
 COPY ./docker-scripts/init.sh /init.sh
 
-CMD ["/bin/bash", /init.sh]
+CMD ["/bin/bash", "/init.sh"]
