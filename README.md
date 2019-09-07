@@ -47,8 +47,8 @@
 > \# bash ./install.sh --docker
 
 ## Docker installation (without Hamachi)
-> $ docker build .
-> \# docker run -v MCSERVER_DIR:/mcserv -p 25565:25565 ID_GIVEN_BY_PREVIOUS_COMMAND
+> $ docker build .  
+> \# docker run -v MCSERVER_DIR:/mcserv -p 25565:25565 ID_GIVEN_BY_PREVIOUS_COMMAND  
 > \# bash ./install.sh --docker
 
 ## Installation
