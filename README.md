@@ -14,8 +14,6 @@
 > 3. start the minecraft server through /opt/mcserv/scripts/start.sh
 
 > While the Server is running, mcserv-stoptimerctrl.service will monitor the servers playercount, through reading the serverlog.
-> Therefore since i have not found a suitable solution to monitor journald logs the log has to be redirected to /opt/mcserv/server.log.
-
 > If the playercount reaches 0 it will start mcserv-stop.timer, which will stop the minecraftserver after x minutes (therefore stopping mcserv-stoptimerctrl.service and restarting mcserv.socket).  
 
 > If the playercount becomes > 0 while the timer is started, the timer is stopped.
