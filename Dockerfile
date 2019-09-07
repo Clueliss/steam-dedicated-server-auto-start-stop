@@ -8,6 +8,6 @@ VOLUME ["/mcserv"]
 RUN dnf --refresh update -y
 RUN dnf install java-openjdk-headless -y
 
-COPY ./docker-scripts/init.sh /init.sh
+COPY ./scripts/docker/init.sh /init.sh
 
 CMD ["/bin/bash", "/init.sh"]

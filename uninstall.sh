@@ -1,4 +1,8 @@
 #!/bin/bash
 
-rm -r /opt/mcserv/scripts
-rm /etc/systemd/system/mcserv*
+set -e
+
+rm /usr/bin/mcserv-*
+rm /etc/systemd/system/mcserv-*
+
+echo "Success"

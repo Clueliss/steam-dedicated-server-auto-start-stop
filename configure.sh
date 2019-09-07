@@ -1,12 +1,13 @@
 #!/bin/bash
 
+set -e
+
 if [[ $# < 1 ]] || [[ $1 == "--help" ]] || [[ $1 == "-h" ]]; then
     echo "Usage: configure PATH_TO_MCSERVER"
     exit 1
 fi
 
-to_edit=(install.sh uninstall.sh systemd-units/mcserv.service systemd-units/mcserv-stoptimerctrl.service)
+sed -i 's!/opt/mcserv!'$1'!g' systemd-units/default/mcserv.service
+sed -i 's!/opt/mcserv!'$1'!g' scripts/default/mcserv-start
 
-for f in "${to_edit[@]}"; do
-    sed -i 's!/opt/mcserv!'$1'!g' "$f"
-done
+echo "Successfully set server path to $1"

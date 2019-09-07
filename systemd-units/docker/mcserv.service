@@ -1,0 +1,13 @@
+[Unit]
+Description=Minecraft Server
+After=network-online.target
+
+Wants=mcserv-stoptimerctrl.service
+OnFailure=mcserv.socket
+
+[Service]
+ExecStart=/usr/bin/docker start --attach minecraft
+ExecStop=/usr/bin/docker stop minecraft
+
+[Install]
+WantedBy=mutli-user.target

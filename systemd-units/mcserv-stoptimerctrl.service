@@ -3,5 +3,4 @@ Description=Monitors if Minecraft Server has not players, to then start mcserv-s
 BindsTo=mcserv.service
 
 [Service]
-WorkingDirectory=/opt/mcserv
-ExecStart=/opt/mcserv/scripts/shutdown-timerctrl.sh
+ExecStart=/usr/bin/mcserv-shutdown-timerctrl

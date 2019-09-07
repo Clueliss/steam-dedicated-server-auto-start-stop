@@ -29,10 +29,30 @@
 > - systemd
 
 ## Configuration
-> If your minecraft server does not live in /opt/mcserv you need to run  
-> $ sh ./configure.sh MCSERVER_DIR
+> If your minecraft server does not live in /opt/mcserv and you are not using docker you need to run  
+> $ bash ./configure.sh MCSERVER_DIR
+
+## Docker installation (with Hamachi)
+> \# docker run -d \\\
+    --name="Hamachi" \\
+    --net="host" \\
+    --privileged="true" \\
+    -e ACCOUNT="your@email.com" \\
+    -v "/mnt/cache/appdata/Hamachi/":"/config":rw \\
+    -v "/etc/localtime":"/etc/localtime":ro \\
+    gfjardim/hamachi
+
+> $ docker build .
+> \# docker run --net="host" -v MCSERVER_DIR:/mcserv ID_GIVEN_BY_PREVIOUS_COMMAND
+> \# bash ./install.sh --docker
+
+## Docker installation (without Hamachi)
+> $ docker build .
+> \# docker run -v MCSERVER_DIR:/mcserv -p 25565:25565 ID_GIVEN_BY_PREVIOUS_COMMAND
+> \# bash ./install.sh --docker
 
 ## Installation
-> \# bash install.sh  
-> \# systemctl daemon-reload  
+> \# bash ./install.sh  
+
+## Starting
 > \# systemctl start mcserv.socket
