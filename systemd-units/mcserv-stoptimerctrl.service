@@ -1,5 +1,5 @@
 [Unit]
-Description=player-count-monitor for minecraft server
+Description=Monitors if Minecraft Server has not players, to then start mcserv-stop.timer
 BindsTo=mcserv.service
 
 [Service]
