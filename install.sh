@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# > 0 ]] && ([[ $1 == "--docker" ]]; then
-    cp docker-scripts/shutdowntimer-ctrl.sh /opt/mcserv
+    cp docker-scripts/shutdown-timerctrl.sh /opt/mcserv
 else
     cp -r scripts /opt/mcserv
 fi
