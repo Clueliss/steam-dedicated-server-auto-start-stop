@@ -1,3 +1,4 @@
 #!/bin/bash
 
-exec java -jar minecraft_server.1.14.4.jar >> server.log 2>&1
+server_exec=$(ls | grep minecraft_server)
+exec java -jar $server_exec >> server.log 2>&1
