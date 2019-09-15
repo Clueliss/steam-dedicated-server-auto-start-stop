@@ -9,8 +9,9 @@ stop_timer() {
 }
 
 init_num_players() {
-    declare -i num_joins=$(docker logs minecraft | grep "joined the game" | wc -l)
-    declare -i num_leaves=$(docker logs minecraft | grep "left the game" | wc -l)
+    declare start_time=$(docker inspect --format='{{.State.StartedAt}}' minecraft)
+    declare -i num_joins=$(docker logs --since=$start_time minecraft | grep "joined the game" | wc -l)
+    declare -i num_leaves=$(docker logs --since=$start_time minecraft | grep "left the game" | wc -l)
 
     echo $(($num_joins - $num_leaves))
 }
@@ -21,12 +22,12 @@ if [[ $players_online == 0 ]]; then
     start_timer
     timer_running=true
 
-    echo "[Info] Timer Running"
+    echo "[Info] Initial playercount determined: $players_online; starting timer"
 else
    stop_timer
    timer_running=false
 
-   echo "[Info] Timer Stopped"
+   echo "[Info] Initial playercount determined: $players_online; making sure timer is stopped"
 fi
 
 
