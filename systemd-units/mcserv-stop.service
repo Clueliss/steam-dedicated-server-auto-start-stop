@@ -1,6 +1,6 @@
 [Unit]
 Description=Stop Minecraft Server
-Conflicts=mcserv.service
+Conflicts=mcserv.service mcserv-stoptimerctrl.service mcserv-stop.timer
 
 [Service]
 Type=oneshot
