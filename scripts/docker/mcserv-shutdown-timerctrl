@@ -16,18 +16,25 @@ init_num_players() {
     echo $(($num_joins - $num_leaves))
 }
 
-players_online=$(init_num_players)
+if [[ $(docker inspect --format='{{.State.Running}}' minecraft) == true ]]; then
+    players_online=$(init_num_players)
+    echo "[Info] Initial state determined: playercount = $players_online"
+else
+    echo "[Info] Server not running; nothing to do. Exiting..."
+    exit 1
+fi
 
+    
 if [[ $players_online == 0 ]]; then
     start_timer
     timer_running=true
-
-    echo "[Info] Initial playercount determined: $players_online; starting timer"
+    
+    echo "[Info] starting timer"
 else
    stop_timer
    timer_running=false
-
-   echo "[Info] Initial playercount determined: $players_online; making sure timer is stopped"
+   
+   echo "[Info] stopping timer"
 fi
 
 
