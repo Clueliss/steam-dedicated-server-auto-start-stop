@@ -40,8 +40,8 @@
     -v "/etc/localtime":"/etc/localtime":ro \\  
     gfjardim/hamachi
 
-> $ docker build .
-> \# docker run --net="host" -v MCSERVER_DIR:/mcserv ID_GIVEN_BY_PREVIOUS_COMMAND
+> $ docker build .  
+> \# docker run --name="minecraft" --net="host" -v MCSERVER_DIR:/mcserv ID_GIVEN_BY_PREVIOUS_COMMAND  
 > \# bash ./install.sh --docker
 
 ## Docker installation (without Hamachi)
