@@ -20,8 +20,8 @@ if [[ $(docker inspect --format='{{.State.Running}}' minecraft) == true ]]; then
     players_online=$(init_num_players)
     echo "[Info] Initial state determined: playercount = $players_online"
 else
-    echo "[Info] Server not running; nothing to do. Exiting..."
-    exit 1
+    players_online=0
+    echo "[Info] Server not running; nothing to do. Waiting..."
 fi
 
     
