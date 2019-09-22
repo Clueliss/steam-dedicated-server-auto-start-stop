@@ -6,8 +6,8 @@ EXPOSE 25565/udp
 VOLUME ["/mcserv"]
 
 RUN dnf --refresh update -y
-RUN dnf install java-openjdk-headless -y
+RUN dnf install java-1.8.0-openjdk-headless -y
 
-COPY ./scripts/docker/init.sh /init.sh
+COPY ./scripts/docker/init /init
 
-CMD ["/bin/bash", "/init.sh"]
+CMD ["/init"]
