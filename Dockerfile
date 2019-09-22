@@ -10,4 +10,6 @@ RUN dnf install java-1.8.0-openjdk-headless -y
 
 COPY ./scripts/docker/init /init
 
+RUN chmod +x /init
+
 CMD ["/init"]
