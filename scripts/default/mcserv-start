@@ -3,6 +3,6 @@
 cd /opt/mcserv
 
 server_exec=$(ls | grep minecraft_server)
-jvm_args=$(cat /opt/mcserv/jvm_args)
+jvm_args=$(cat jvm_args)
 
 exec java $jvm_args -jar $server_exec
