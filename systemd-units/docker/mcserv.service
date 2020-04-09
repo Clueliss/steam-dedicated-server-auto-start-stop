@@ -1,6 +1,7 @@
 [Unit]
 Description=Minecraft Server
-After=network-online.target
+After=network-online.target docker.service
+Requires=docker.service
 
 Wants=mcserv-stoptimerctrl.service
 OnFailure=mcserv.socket
