@@ -38,7 +38,7 @@ else
 fi
 
 
-docker logs minecraft --follow --since 0s | while read line; do
+journalctl --unit=mcserv.service --follow --since "0 sec ago" | while read line; do
     if echo "$line" | grep -q "joined the game"; then
         players_online=$(($players_online + 1))
 

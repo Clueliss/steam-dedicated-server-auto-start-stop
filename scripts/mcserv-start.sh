@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd /opt/mcserv
-
-server_exec=$(ls | grep minecraft_server)
+server_exec=$(ls | grep forge)
 jvm_args=$(cat jvm_args)
 
 exec java $jvm_args -jar $server_exec

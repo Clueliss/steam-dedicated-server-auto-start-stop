@@ -4,4 +4,4 @@ BindsTo=mcserv.service
 After=mcserv.service
 
 [Service]
-ExecStart=/usr/bin/mcserv-shutdown-timerctrl
+ExecStart=/usr/local/bin/mcserv-shutdown-timerctrl.sh
