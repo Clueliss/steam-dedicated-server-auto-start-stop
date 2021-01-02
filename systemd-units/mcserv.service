@@ -7,7 +7,7 @@ OnFailure=mcserv.socket
 
 [Service]
 WorkingDirectory=/opt/mcserv
-ExecStart=/usr/local/bin/mcserv-start
+ExecStart=/usr/local/bin/mcserv-start.sh
 
 [Install]
 WantedBy=mutli-user.target

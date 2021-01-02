@@ -6,4 +6,4 @@ Conflicts=mcserv.service
 ListenStream=25565
 
 [Install]
-WantedBy=network-online.target
+WantedBy=sockets.target

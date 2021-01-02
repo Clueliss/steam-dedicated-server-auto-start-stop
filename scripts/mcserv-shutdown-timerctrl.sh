@@ -8,34 +8,10 @@ stop_timer() {
     systemctl stop mcserv-stop.timer
 }
 
-init_num_players() {
-    declare start_time=$(docker inspect --format='{{.State.StartedAt}}' minecraft)
-    declare -i num_joins=$(docker logs --since=$start_time minecraft | grep "joined the game" | wc -l)
-    declare -i num_leaves=$(docker logs --since=$start_time minecraft | grep "left the game" | wc -l)
+players_online=0
 
-    echo $(($num_joins - $num_leaves))
-}
-
-if [[ $(docker inspect --format='{{.State.Running}}' minecraft) == true ]]; then
-    players_online=$(init_num_players)
-    echo "[Info] Initial state determined: playercount = $players_online"
-else
-    players_online=0
-    echo "[Info] Server not running; nothing to do. Waiting..."
-fi
-
-    
-if [[ $players_online == 0 ]]; then
-    start_timer
-    timer_running=true
-    
-    echo "[Info] starting timer"
-else
-   stop_timer
-   timer_running=false
-   
-   echo "[Info] stopping timer"
-fi
+start_timer
+timer_running=true
 
 
 journalctl --unit=mcserv.service --follow --since "0 sec ago" | while read line; do
