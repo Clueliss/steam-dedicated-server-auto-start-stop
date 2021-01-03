@@ -11,7 +11,7 @@ COPY scripts/* /usr/local/bin/
 COPY systemd-units/* /etc/systemd/system/
 
 RUN chmod +x /usr/local/bin/mcserv-*
-RUN yum install java-1.8.0-openjdk-headless curl git -y
+RUN yum install java-1.8.0-openjdk-headless curl git gcc -y
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh && \
     sh /tmp/rustup.sh -y --default-toolchain=nightly
