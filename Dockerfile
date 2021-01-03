@@ -4,6 +4,7 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 EXPOSE 25565/tcp
 EXPOSE 25565/udp
+EXPOSE 8000/tcp
 
 VOLUME ["/opt/mcserv", "/sys/fs/cgroup", "/tmp", "/run"]
 
