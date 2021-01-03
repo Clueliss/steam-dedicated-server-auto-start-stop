@@ -2,7 +2,7 @@
 
 set -e
 
-cp scripts/* /usr/local/bin
-cp systemd-units/* /etc/systemd/system
+install scripts/* /usr/local/bin
+install systemd-units/* /etc/systemd/system
 
 echo "Success"
