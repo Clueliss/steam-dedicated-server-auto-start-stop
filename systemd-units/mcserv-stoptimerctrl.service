@@ -4,5 +4,4 @@ BindsTo=mcserv.service
 After=mcserv.service
 
 [Service]
-Type=oneshot
 ExecStart=/usr/local/bin/mcserv-shutdown-timerctrl.sh
