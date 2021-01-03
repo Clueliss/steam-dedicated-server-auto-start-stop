@@ -14,7 +14,7 @@ RUN chmod +x /usr/local/bin/mcserv-*
 RUN yum install java-1.8.0-openjdk-headless curl git gcc -y
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh && \
-    sh /tmp/rustup.sh -y --default-toolchain=nightly
+    sh /tmp/rustup.sh -y --default-toolchain=nightly --profile=minimal
 
 RUN cd /tmp && \
     git clone https://github.com/Clueliss/systemd-query-rest && \
