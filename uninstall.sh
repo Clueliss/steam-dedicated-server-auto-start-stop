@@ -2,7 +2,7 @@
 
 set -e
 
-rm /usr/bin/mcserv-*
+rm /usr/local/bin/mcserv-*
 rm /etc/systemd/system/mcserv-*
 
 echo "Success"

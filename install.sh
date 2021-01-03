@@ -2,8 +2,7 @@
 
 set -e
 
-cp scripts/default/* /usr/bin
-cp systemd-units/default/* /etc/systemd/system
-cp systemd-units/*.* /etc/systemd/system
-chmod +x /usr/bin/mcserv-*
+cp scripts/* /usr/local/bin
+cp systemd-units/* /etc/systemd/system
+
 echo "Success"

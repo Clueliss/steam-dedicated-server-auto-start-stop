@@ -1,7 +1,8 @@
 [Unit]
-Description=Monitors if Minecraft Server has not players, to then start mcserv-stop.timer
+Description=Monitors if Minecraft Server has no players, to then start mcserv-stop.timer
 BindsTo=mcserv.service
 After=mcserv.service
 
 [Service]
+Type=oneshot
 ExecStart=/usr/local/bin/mcserv-shutdown-timerctrl.sh
