@@ -1,6 +1,10 @@
-FROM centos/systemd
+FROM rustlang/rust:nightly AS builder
+WORKDIR /usr/src/systemd-query-rest
+COPY systemd-query-rest ./
+RUN cargo build --release
 
-ENV PATH="/root/.cargo/bin:${PATH}"
+
+FROM centos/systemd
 
 EXPOSE 25565/tcp
 EXPOSE 25565/udp
@@ -10,17 +14,11 @@ VOLUME ["/opt/mcserv", "/sys/fs/cgroup", "/tmp", "/run"]
 
 COPY scripts/* /usr/local/bin/
 COPY systemd-units/* /etc/systemd/system/
+COPY --from=builder /usr/src/systemd-query-rest/deploy/* /etc/systemd/system/
+COPY --from=builder /usr/src/systemd-query-rest/target/release/systemd-query-rest /usr/local/bin/systemd-query-rest
 
-RUN chmod +x /usr/local/bin/mcserv-*
-RUN yum install java-1.8.0-openjdk-headless curl git gcc -y
-
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustup.sh && \
-    sh /tmp/rustup.sh -y --default-toolchain=nightly --profile=minimal
-
-RUN cd /tmp && \
-    git clone https://github.com/Clueliss/systemd-query-rest && \
-    cd systemd-query-rest && \
-    bash ./install.sh
+RUN chmod +x /usr/local/bin/mcserv-* && chmod +x /usr/local/bin/systemd-query-rest
+RUN yum install java-1.8.0-openjdk-headless -y
 
 RUN systemctl enable mcserv.socket && systemctl enable systemd-query-rest.service
 

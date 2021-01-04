@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+    hamachi:
+        container_name: mcserv_hamachi
+        image: "gfjardim/hamachi"
+        network_mode: "host"
+        privileged: true        
+        environment:
+            - ACCOUNT=your@email.com
+        volumes:
+            - /opt/container-data/hamachi:/config:rw
+            - /etc/localtime:/etc/localtime:ro

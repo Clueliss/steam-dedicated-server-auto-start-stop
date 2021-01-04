@@ -1,0 +1,3 @@
+[submodule "systemd-query-rest"]
+	path = systemd-query-rest
+	url = https://github.com/Clueliss/systemd-query-rest
