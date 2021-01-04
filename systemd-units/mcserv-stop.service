@@ -1,7 +1,5 @@
 [Unit]
-Description=Stop Minecraft Server
-Conflicts=mcserv.service mcserv-stoptimerctrl.service mcserv-stop.timer
+Description=service to stop mcserv
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/echo "Stopping mcserv.service"
+ExecStart=/usr/bin/systemctl stop mcserv.service
