@@ -1,5 +1,6 @@
 [Unit]
 Description=service to stop mcserv
+Conflicts=mcserv.service
 
 [Service]
-ExecStart=/usr/bin/systemctl stop mcserv.service
+ExecStart=/bin/echo "stopping mcserv"

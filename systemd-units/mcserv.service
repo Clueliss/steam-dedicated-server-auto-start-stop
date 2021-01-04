@@ -1,14 +1,14 @@
 [Unit]
 Description=Minecraft Server
 After=network-online.target
-
 Wants=mcserv-stoptimerctrl.service
+Conflicts=mcserv.socket
+
 OnFailure=mcserv.socket
 
 [Service]
 WorkingDirectory=/opt/mcserv
 ExecStart=/usr/local/bin/mcserv-start.sh
-ExecStopPost=/usr/bin/systemctl start mcserv.socket
 
 [Install]
 WantedBy=mutli-user.target
