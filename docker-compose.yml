@@ -12,4 +12,5 @@ services:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         tmpfs:
             - /run
+            - /run/lock
             - /tmp
