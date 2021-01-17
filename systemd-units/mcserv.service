@@ -3,7 +3,6 @@ Description=Minecraft Server
 After=network-online.target
 Wants=mcserv-stoptimerctrl.service
 Conflicts=mcserv.socket
-
 OnFailure=mcserv.socket
 
 [Service]
@@ -11,7 +10,9 @@ WorkingDirectory=/opt/mcserv
 SuccessExitStatus=143
 Restart=on-failure
 
-ExecStart=/usr/local/bin/mcserv-start.sh
+ExecStartPre=/usr/bin/mkfifo %t/mcserv.stdin
+ExecStart=/bin/bash -c "exec /usr/local/bin/mcserv-start.sh < %t/mcserv.stdin"
+ExecStopPost=/usr/bin/rm %t/mcserv.stdin
 ExecStopPost=/usr/bin/systemctl start mcserv.socket
 
 [Install]
