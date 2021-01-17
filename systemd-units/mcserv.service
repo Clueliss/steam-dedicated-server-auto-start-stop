@@ -12,7 +12,7 @@ SuccessExitStatus=143
 Restart=on-failure
 
 ExecStart=/usr/local/bin/mcserv-start.sh
-ExecStopPost=/usr/bin/systemctl start mcserv.socket
+ExecStopPost=/bin/false
 
 [Install]
 WantedBy=mutli-user.target
