@@ -1,14 +1,22 @@
 version: "3.3"
 services:
+    hamachi:
+        image: "gfjardim/hamachi"
+        privileged: true        
+        environment:
+            - ACCOUNT=your@email.com
+        volumes:
+            - ./hamachi:/config:rw
+            - /etc/localtime:/etc/localtime:ro
+
     minecraft_server:
-        container_name: mcserv_server
         build: .
         ports:
             - "25565:25565/tcp"
             - "25565:25565/udp"
             - "8000:8000/tcp"
         volumes:
-            - /opt/mcserv:/opt/mcserv
+            - ./minecraft:/opt/mcserv
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         tmpfs:
             - /run

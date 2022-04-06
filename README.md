@@ -26,31 +26,20 @@
 > - bash
 > - systemd
 
-## Configuration
-> If your minecraft server does not live in /opt/mcserv and you are not using docker you need to run  
-> $ bash ./configure.sh MCSERVER_DIR
+## Podman Compose (< v1.0)
+> podman-compose up -d
 
-## Docker installation (with Hamachi)
-> \# docker run -d \\  
-    --name="Hamachi" \\  
-    --net="host" \\  
-    --privileged="true" \\  
-    -e ACCOUNT="your@email.com" \\  
-    -v "/mnt/cache/appdata/Hamachi/":"/config":rw \\  
-    -v "/etc/localtime":"/etc/localtime":ro \\  
-    gfjardim/hamachi
+## Manual Install
 
-> $ docker build .  
-> \# docker run --name="minecraft" --net="host" -v MCSERVER_DIR:/mcserv ID_GIVEN_BY_PREVIOUS_COMMAND  
-> \# bash ./install.sh --docker
+### Configuration
+If your minecraft server does not live in /opt/mcserv and you are not using podman you need to run  
+> $ ./manual_deploy/configure.sh YOUR_MCSERVER_DIR
 
-## Docker installation (without Hamachi)
-> $ docker build .  
-> \# docker run -v MCSERVER_DIR:/mcserv -p 25565:25565 ID_GIVEN_BY_PREVIOUS_COMMAND  
-> \# bash ./install.sh --docker
+### Installation
+> \# ./manual_deploy/install.sh
 
-## Installation
-> \# bash ./install.sh  
-
-## Starting
+### Starting
 > \# systemctl start mcserv.socket
+
+### Uninstall
+> \# ./manual_deploy/uninstall.sh
