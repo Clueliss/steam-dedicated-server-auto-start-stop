@@ -27,7 +27,8 @@
 > - systemd
 
 ## Podman Compose (< v1.0)
-> podman-compose up -d
+- change the UID and GID in scripts/mcserv-start.sh to the IDs of your minecraft user, this is to drop privileges before starting the server
+- > $ podman-compose up -d
 
 ## Manual Install
 
