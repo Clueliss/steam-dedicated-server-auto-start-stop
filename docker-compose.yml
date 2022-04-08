@@ -15,6 +15,11 @@ services:
             - "25565:25565/tcp"
             - "25565:25565/udp"
             - "8000:8000/tcp"
+        environment:
+            - MINECRAFT_UID=1000
+            - MINECRAFT_GID=1000
+            - MINECRAFT_SERVER_JAR=paper.jar
+            - MINECRAFT_JVM_ARGS=${MINECRAFT_JVM_ARGS}
         volumes:
             - ./minecraft:/opt/mcserv
             - /sys/fs/cgroup:/sys/fs/cgroup:ro

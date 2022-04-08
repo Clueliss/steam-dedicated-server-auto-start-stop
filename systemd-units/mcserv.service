@@ -7,11 +7,14 @@ Conflicts=mcserv.socket
 OnFailure=mcserv.socket
 
 [Service]
+User=minecraft
+Group=minecraft
+PassEnvironment=MINECRAFT_SERVER_JAR MINECRAFT_JVM_ARGS MINECRAFT_JAR_ARGS
 WorkingDirectory=/opt/mcserv
 SuccessExitStatus=143
 Restart=on-failure
 
-ExecStart=/usr/local/bin/mcserv-start.sh
+ExecStart=java ${MINECRAFT_JVM_ARGS} -jar ${MINECRAFT_SERVER_JAR} ${MINECRAFT_JAR_ARGS}
 ExecStopPost=/bin/false
 
 [Install]
