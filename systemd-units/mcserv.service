@@ -14,7 +14,7 @@ WorkingDirectory=/opt/mcserv
 SuccessExitStatus=143
 Restart=on-failure
 
-ExecStart=java ${MINECRAFT_JVM_ARGS} -jar ${MINECRAFT_SERVER_JAR} ${MINECRAFT_JAR_ARGS}
+ExecStart=java $MINECRAFT_JVM_ARGS -jar ${MINECRAFT_SERVER_JAR} $MINECRAFT_JAR_ARGS
 ExecStopPost=/bin/false
 
 [Install]
