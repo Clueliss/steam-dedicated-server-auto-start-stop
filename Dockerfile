@@ -14,20 +14,22 @@ EXPOSE 8000/tcp
 
 ENV MINECRAFT_UID=0
 ENV MINECRAFT_GID=0
+ENV MINECRAFT_PASSWORD=minecraft
 ENV MINECRAFT_TIMEOUT=15min
 ENV MINECRAFT_SERVER_JAR=
 ENV MINECRAFT_JVM_ARGS=
 ENV MINECRAFT_JAR_ARGS=
 
-RUN useradd --system --no-create-home --user-group --shell /sbin/nologin minecraft
-
-RUN apt-get update && apt-get install openjdk-17-jre-headless -y
+RUN apt-get update \
+    && apt-get install openjdk-17-jre-headless vsftpd -y \
+    && useradd --system --no-create-home --user-group --shell /sbin/nologin --home-dir /opt/mcserv minecraft \
+    && echo '/sbin/nologin' >> /etc/shells \
+    && sed -i 's/#write_enable=YES/write_enable=YES/' /etc/vsftpd.conf
 
 COPY scripts/* /usr/local/bin/
 COPY systemd-units/* /etc/systemd/system/
 COPY --from=builder /usr/src/systemd-query-rest/deploy/* /etc/systemd/system/
 COPY --from=builder /usr/src/systemd-query-rest/target/release/systemd-query-rest /usr/local/bin/systemd-query-rest
 
-RUN chmod +x /usr/local/bin/*
-
-RUN systemctl enable setup.service && systemctl enable mcserv.socket && systemctl enable systemd-query-rest.service
+RUN chmod +x /usr/local/bin/* \
+    && systemctl enable setup.service mcserv.socket systemd-query-rest.service vsftpd.service 

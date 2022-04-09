@@ -16,6 +16,8 @@ if [[ $(id -g minecraft) != $MINECRAFT_GID ]]; then
     groupmod --non-unique --gid "$MINECRAFT_GID" minecraft
 fi
 
+echo "minecraft:$MINECRAFT_PASSWORD" | chpasswd
+
 if [[ $MINECRAFT_TIMEOUT != $(get_current_timeout) ]]; then
     mkdir /etc/systemd/system/mcserv-stop.timer.d || true
     echo -e "[Timer]\nOnActiveSec=$MINECRAFT_TIMEOUT" >| /etc/systemd/system/mcserv-stop.timer.d/override.conf

@@ -25,6 +25,13 @@ Just try joining again after some time when the server is up and running.
 ## Environment Variables
 - `MINECRAFT_UID`: the uid of the user that runs minecraft the default is root but you should probably change that
 - `MINECRAFT_GID`: the gid of the user that runs minecraft the default is root but you should probably change that
+- `MINECRAFT_PASSWORD`: the password for the minecraft user (for use with ftp)
 - `MINECRAFT_SERVER_JAR`: the filename of the server jar
 - `MINECRAFT_JVM_ARGS`: the arguments passed to the java-virtual-machine. Since they are often very long consider unsing a [.env](https://docs.docker.com/compose/environment-variables/#the-env-file) file.
 - `MINECRAFT_JAR_ARGS`: the arguments passed to the minecraft server jar
+
+### Ports
+- `25565/tcp`: minecraft
+- `25565/udp`: minecraft
+- `8000/tcp`: systemd-query-rest
+- `21/tcp`: ftp

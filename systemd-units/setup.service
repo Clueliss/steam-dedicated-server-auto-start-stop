@@ -3,7 +3,7 @@ Description=setup container from environment
 
 [Service]
 Type=oneshot
-PassEnvironment=MINECRAFT_UID MINECRAFT_GID MINECRAFT_TIMEOUT
+PassEnvironment=MINECRAFT_UID MINECRAFT_GID MINECRAFT_PASSWORD MINECRAFT_TIMEOUT
 ExecStart=/usr/local/bin/setup.sh
 
 [Install]
