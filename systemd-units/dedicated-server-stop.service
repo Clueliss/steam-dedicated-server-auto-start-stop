@@ -1,0 +1,7 @@
+[Unit]
+Description=service to stop dedicated server
+Conflicts=dedicated-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/echo "stopping dedicated server"

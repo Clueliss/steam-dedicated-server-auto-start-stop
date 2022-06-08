@@ -1,0 +1,8 @@
+[Unit]
+Description=Service to stop the dedicated server if no players are online
+BindsTo=dedicated-server.service
+After=dedicated-server.service
+
+[Service]
+PassEnvironment=DDSERV_LOG_SOURCE DDSERV_LOG_FILE DDSERV_JOIN_PATTERN DDSERV_LEAVE_PATTERN
+ExecStart=/usr/local/bin/dedicated-server-timerctrl

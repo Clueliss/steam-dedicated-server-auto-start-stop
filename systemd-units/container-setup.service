@@ -1,0 +1,10 @@
+[Unit]
+Description=setup container from environment
+
+[Service]
+Type=oneshot
+PassEnvironment=DDSERV_UID DDSERV_GID DDSERV_PASSWORD DDSERV_TIMEOUT DDSERV_ACTIVATE_PORT DDSERV_STEAM_APP_ID DDSERV_STEAM_FORCE_PLATFORM
+ExecStart=/usr/local/bin/container-setup
+
+[Install]
+WantedBy=multi-user.target

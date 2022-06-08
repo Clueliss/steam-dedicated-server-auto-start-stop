@@ -1,0 +1,10 @@
+[Unit]
+Description=Socket for dedicated-server.service
+After=container-setup.service
+Conflicts=dedicated-server.service dedicated-server-stop.timer
+
+[Socket]
+ListenDatagram=27015
+
+[Install]
+WantedBy=sockets.target

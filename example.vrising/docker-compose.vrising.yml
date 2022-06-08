@@ -1,0 +1,35 @@
+version: "3.3"
+services:
+    #hamachi:
+    #    image: gfjardim/hamachi
+    #    privileged: true        
+    #    environment:
+    #        - ACCOUNT=your@email.com
+    #    volumes:
+    #        - ./hamachi:/config:rw
+    #        - /etc/localtime:/etc/localtime:ro
+
+    vrising_server:
+        build: ..
+        ports:
+            - 9876:9876/udp
+            - 9877:9877/udp
+            - 8000:8000/tcp
+            - 8021:21/tcp
+        environment:
+            - DDSERV_UID=1000
+            - DDSERV_GID=1000
+            - DDSERV_ACTIVATE_PORT=9876/udp
+            - DDSERV_PASSWORD=test
+            - DDSERV_TIMEOUT=15min
+            - DDSERV_STEAM_APP_ID=1829350
+            - DDSERV_STEAM_FORCE_PLATFORM=windows
+            - DDSERV_JOIN_PATTERN=User .+? connected as ID
+            - DDSERV_LEAVE_PATTERN=User .+? disconnected
+        volumes:
+            - ./test:/opt/dedicated-server
+            - /sys/fs/cgroup:/sys/fs/cgroup:ro
+        tmpfs:
+            - /run
+            - /run/lock
+            - /tmp

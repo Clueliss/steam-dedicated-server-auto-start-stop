@@ -1,7 +1,0 @@
-[Unit]
-Description=service to stop mcserv
-Conflicts=mcserv.service
-
-[Service]
-Type=oneshot
-ExecStart=/bin/echo "stopping mcserv"

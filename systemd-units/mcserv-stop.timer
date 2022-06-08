@@ -1,5 +1,0 @@
-[Unit]
-Description=Timer for Stopping Minecraft server
-
-[Timer]
-OnActiveSec=15min

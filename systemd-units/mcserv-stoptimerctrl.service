@@ -1,7 +1,0 @@
-[Unit]
-Description=Service to close mcserv if no players are online
-BindsTo=mcserv.service
-After=mcserv.service
-
-[Service]
-ExecStart=/usr/local/bin/mcserv-shutdown-timerctrl.sh

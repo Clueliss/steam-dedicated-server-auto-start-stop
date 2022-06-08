@@ -1,37 +1,33 @@
-# Minecraft Server Auto-StartStop
+# Steam Dedicated Server Auto-Start/Stop
 
 ## Introduction
 
-This is a collection of bash scripts and systemd-units that will allow a Minecraft Server to:  
+This is a collection of bash scripts and systemd-units that will allow a steam dedicated server to:  
 - automatically start when players try to join  
-- automatically stop after X (default 15min) minutes when no players are online  
+- automatically stop after some timespan X (default 15min) when no players are online  
 
 ## How it works
-Since Minecraft does not natively support socket activation there is some trickery involved.
-1. Firstly there is the systemd socket mcserv.socket which listenes on Port 25565, if it receives traffic it starts mcserv.service which will:
-    1. stop mcserv.socket (since it conflics)
-    2. start mcserv-stoptimerctrl.service
-    3. start the minecraft server through mcserv-start.sh
-
-2. While the Server is running, mcserv-stoptimerctrl.service will monitor the servers playercount, through reading the serverlog.
-3. If the playercount reaches 0 it will start mcserv-stop.timer, which will stop the minecraftserver after x minutes (therefore stopping mcserv-stoptimerctrl.service and restarting mcserv.socket).  
-
-4. If the playercount becomes > 0 while the timer is started, the timer is stopped.
-
-## Limitations
-- Initially connecting players will experience a connection closed error message, since the mcserv.socket first bound to port 25565 and is then stopped. I don't know of any mechanism to give the open socket to the minecraft server. <br>
-Just try joining again after some time when the server is up and running.
+It is based on my minecraft-server-start-stop-ctrl repo and works the exact same way, just generalized to steam dedicated servers.
 
 ## Environment Variables
-- `MINECRAFT_UID`: the uid of the user that runs minecraft the default is root but you should probably change that
-- `MINECRAFT_GID`: the gid of the user that runs minecraft the default is root but you should probably change that
-- `MINECRAFT_PASSWORD`: the password for the minecraft user (for use with ftp)
-- `MINECRAFT_SERVER_JAR`: the filename of the server jar
-- `MINECRAFT_JVM_ARGS`: the arguments passed to the java-virtual-machine. Since they are often very long consider unsing a [.env](https://docs.docker.com/compose/environment-variables/#the-env-file) file.
-- `MINECRAFT_JAR_ARGS`: the arguments passed to the minecraft server jar
+- `DDSERV_UID`: The uid of the user that runs the dedicated server. The default is root but you should change that.
+- `DDSERV_GID`: The gid of the user that runs the dedicated server. The default is root but you should change that.
+- `DDSERV_PASSWORD`: The password for the ddserv user (for use with ftp; login with `user: ddserv and password: $DDSERV_PASSWORD`).
+- `DDSERV_EXIT_SUCCESS_CODE`: Set the to the exit code the server returns when successfully closing. Usually this should be 0, but in practice it often isn't; e.g. for Minecraft it is 143.
+- `DDSERV_TIMEOUT`: The time to wait before shutting down if no players are online.
+- `DDSERV_ACTIVATE_PORT`: The port to listen on for inital traffic that triggers the server start. Format: `port/proto`.
+- `DDSERV_LOG_SOURCE`: Where to get the connection logs from. Possible values: `journald`, `file`. `journald` means it will take the logs from stdout of the server.
+- `DDSERV_LOG_FILE`: If `DDSERV_LOG_SOURCE` == `file` then this should be set to the path of the logfile.
+- `DDSERV_STEAM_APP_ID`: The steam app id of the dedicated server.
+- `DDSERV_STEAM_FORCE_PLATFORM`: Force steamcmd to download content for a specific platform, this is usually empty or set to `windows`.
+- `DDSERV_JOIN_PATTERN`: A regex that matches _only_ a player join message in the log.
+- `DDSERV_LEAVE_PATTERN`: A regex that matches _only_ a player leave message in the log.
+
+## Volumes and important files
+- `/opt/dedicated-server`: this is where all the dedicated server files will be put
+- `/opt/dedicated-server/start_server`: an executable script (provided by you) that starts the dedicated server
 
 ### Ports
-- `25565/tcp`: minecraft
-- `25565/udp`: minecraft
 - `8000/tcp`: systemd-query-rest
 - `21/tcp`: ftp
+- and whatever port the dedicated server runs on

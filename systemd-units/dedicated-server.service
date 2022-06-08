@@ -1,0 +1,17 @@
+[Unit]
+Description=Dedicated Server
+After=network-online.target
+Wants=dedicated-server-timerctrl.service
+Conflicts=dedicated-server.socket
+
+OnFailure=dedicated-server.socket
+
+[Service]
+User=ddserv
+Group=ddserv
+WorkingDirectory=/opt/dedicated-server
+SuccessExitStatus=0
+Restart=on-failure
+
+ExecStart=/opt/dedicated-server/start_server
+ExecStopPost=/bin/false
